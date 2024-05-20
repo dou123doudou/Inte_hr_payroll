@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="payrollMasterPage.master.cs" Inherits="IntegratedHrPayroll.payroll.payrollMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Payroll</title>
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+        <div class="nav">
+            <div class="nav-logo">
+                <img src="assets/img/logo.png" alt="">
+            </div>
+            <div class="nav-main">
+                <img src="assets/img/Profile.png" alt="">
+            </div>
+        </div>
+        <div class="body">
+            <div class="body-catalog">
+                <ul class="catalog-list">
+                    <li class="catalog-item">
+                        <img class="dashboard-icon" src="assets/img/home.png">
+                        <a class="catalog-item-content" runat="server" href="dashboard.aspx">Dashboard</a>
+                    </li>
+                    <li class="catalog-item">
+                        <img class="dashboard-icon" src="assets/img/suitcase.png">
+                        <a class="catalog-item-content" href="totalholiday.aspx">Total Holidays
+                        </a>
+                    </li>
+                    <li class="catalog-item">
+                        <img class="dashboard-icon" src="assets/img/Icon.png">
+                        <a class="catalog-item-content" id = "listempl" runat="server" onclick="empclick">List of employee</a>
+                    </li>
+                    <li class="catalog-item">
+                        <img class="dashboard-icon" src="assets/img/alert.png">
+                        <a class="catalog-item-content" href="Manager.aspx">Manager</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+            </div>
+            <div class="body-main">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    <%-- bắt đầu từ class body-main-dashboard--%>
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        </div>
+        
+    </form>
+</body>
+</html>
