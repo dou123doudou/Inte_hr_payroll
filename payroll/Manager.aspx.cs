@@ -168,7 +168,7 @@ namespace IntegratedHrPayroll.payroll
             TB_Dayoff.Text = "";
             loadlistemp1();
         }
-        
+
         protected void AddEmployee(object sender, EventArgs e)
         {
 
@@ -184,7 +184,7 @@ namespace IntegratedHrPayroll.payroll
 
             // viết sql thêm vào db
             int rdId = new Random().Next(0, 1000000);
-            string sql = "INSERT INTO PERSONAL(PERSONAL_ID, CURRENT_FIRST_NAME,CURRENT_MIDDLE_NAME,CURRENT_LAST_NAME,CURRENT_GENDER,CURRENT_COUNTRY )"+ " VALUES(@employeeId,@firstName,@middleName,@lastName,@gender,@nation)";
+            string sql = "INSERT INTO PERSONAL(PERSONAL_ID, CURRENT_FIRST_NAME,CURRENT_MIDDLE_NAME,CURRENT_LAST_NAME,CURRENT_GENDER,CURRENT_COUNTRY )" + " VALUES(@employeeId,@firstName,@middleName,@lastName,@gender,@nation)";
             string sqlj = "INSERT INTO JOB_HISTORY_(DEPARTMENT,JOB_HISTORY_ID)" + " VALUES(@department,@rdId)";
             string sqlewt = "INSERT INTO EMPLOYMENT_WORKING_TIME(NUMBER_DAYS_ACTUAL_OF_WORKING_PER_MONTH,TOTAL_NUMBER_VACATION_WORKING_DAYS_PER_MONTH,EMPLOYMENT_WORKING_TIME_ID )" + " VALUES(@workingday,@dayoff,@rdId)";
 

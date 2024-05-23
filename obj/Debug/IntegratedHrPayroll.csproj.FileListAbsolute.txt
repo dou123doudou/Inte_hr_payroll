@@ -87,6 +87,8 @@ D:\Hệ thống tích hợp\IntegratedHrPayroll\IntegratedHrPayroll\obj\Debug\In
 D:\Hệ thống tích hợp\IntegratedHrPayroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.csproj.CopyComplete
 D:\Hệ thống tích hợp\IntegratedHrPayroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.dll
 D:\Hệ thống tích hợp\IntegratedHrPayroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.pdb
+C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.csproj.AssemblyReference.cache
+C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.csproj.CoreCompileInputs.cache
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\IntegratedHrPayroll.dll.config
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\IntegratedHrPayroll.dll
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\IntegratedHrPayroll.pdb
@@ -161,7 +163,6 @@ C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Pa
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\System.Threading.Tasks.Extensions.dll
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\System.Numerics.Vectors.dll
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\System.Buffers.dll
-C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\MySql.Data.xml
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\System.Web.Optimization.xml
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\Newtonsoft.Json.xml
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\Antlr3.Runtime.pdb
@@ -173,8 +174,6 @@ C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Pa
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\System.Web.Helpers.xml
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\System.Web.Mvc.xml
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.csproj.AssemblyReference.cache
-C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.csproj.CoreCompileInputs.cache
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.csproj.CopyComplete
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.dll
 C:\Users\Laptop T&T\Documents\Integration\Integrated_HR-Payroll\Integrated-Hr-Payroll\IntegratedHrPayroll\obj\Debug\IntegratedHrPayroll.pdb

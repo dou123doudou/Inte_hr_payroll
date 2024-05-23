@@ -7,11 +7,26 @@ using System.Web.UI.WebControls;
 
 namespace IntegratedHrPayroll
 {
-    public partial class _Default : Page
+    public partial class Default : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
+            string hardcodedUsername = "admin";
+            string hardcodedPassword = "123";
 
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+
+            if (username == hardcodedUsername && password == hardcodedPassword)
+            {
+                
+                Response.Redirect("dashbord.aspx");
+            }
+            else
+            {
+                lblErrorMessage.Text = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                lblErrorMessage.Visible = true;
+            }
         }
     }
 }

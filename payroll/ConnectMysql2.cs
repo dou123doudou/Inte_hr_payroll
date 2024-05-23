@@ -58,5 +58,10 @@ namespace IntegratedHrPayroll
             }
             return row;
         }
+
+        internal DataTable getData(string sqlMySql, Dictionary<string, object> dictionary)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

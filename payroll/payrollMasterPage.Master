@@ -17,6 +17,8 @@
                 <img src="assets/img/logo.png" alt="">
             </div>
             <div class="nav-main">
+                <asp:LinkButton ID="LogoutButton" CssClass="logout-btn" runat="server" OnClick="LogoutButton_Click" style="display: contents; margin-right: 20px; color: red;">Logout</asp:LinkButton>
+                
                 <img src="assets/img/Profile.png" alt="">
             </div>
         </div>
@@ -25,20 +27,20 @@
                 <ul class="catalog-list">
                     <li class="catalog-item">
                         <img class="dashboard-icon" src="assets/img/home.png">
-                        <a class="catalog-item-content" runat="server" href="dashboard.aspx">Dashboard</a>
+                        <a class="catalog-item-content" runat="server" href="dashboard.aspx" style="color: blue;">Payroll</a>
                     </li>
                     <li class="catalog-item">
                         <img class="dashboard-icon" src="assets/img/suitcase.png">
-                        <a class="catalog-item-content" href="totalholiday.aspx">Total Holidays
+                        <a class="catalog-item-content" href="totalholiday.aspx" style="color: blue;">Total Holidays
                         </a>
                     </li>
                     <li class="catalog-item">
                         <img class="dashboard-icon" src="assets/img/Icon.png">
-                        <a class="catalog-item-content" id = "listempl" runat="server" onclick="empclick">List of employee</a>
+                        <a class="catalog-item-content" id="listempl" runat="server" href="listempl.aspx" style="color: blue;">List of employee</a>
                     </li>
                     <li class="catalog-item">
                         <img class="dashboard-icon" src="assets/img/alert.png">
-                        <a class="catalog-item-content" href="Manager.aspx">Manager</a>
+                        <a class="catalog-item-content" href="Manager.aspx" style="color: blue;">Manager</a>
                     </li>
                 </ul>
             </div>
