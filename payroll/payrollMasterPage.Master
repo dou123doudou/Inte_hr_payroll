@@ -8,52 +8,61 @@
     <link href="assets/css/style.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .avatar {
+            height: 100%; /* ctrl K D format code, ctrl KC cmt code*/
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container">
-        <div class="nav">
-            <div class="nav-logo">
-                <img src="assets/img/logo.png" alt="">
+            <div class="nav">
+                <div class="nav-logo">
+                    <img src="assets/img/logo.png" style="display: block; max-width: auto; height: auto;" />
+                </div>
+                <div class="nav-main">
+                    <asp:LinkButton ID="LogoutButton" CssClass="logout-btn" runat="server" OnClick="LogoutButton_Click" Style="margin-right: 20px; color: black; border: 1px solid #DDD9D9; padding: 12px 20px; border-radius: 10px; text-decoration: none; background-color: rgb(225, 175, 209); font-weight: 600">Logout</asp:LinkButton>
+                    <div>
+                        <img src="assets/img/Profile.png" class="avatar">
+                    </div>
+                </div>
             </div>
-            <div class="nav-main">
-                <asp:LinkButton ID="LogoutButton" CssClass="logout-btn" runat="server" OnClick="LogoutButton_Click" style="display: contents; margin-right: 20px; color: red;">Logout</asp:LinkButton>
-                
-                <img src="assets/img/Profile.png" alt="">
+            <div class="body">
+                <div class="body-catalog">
+                    <ul class="catalog-list">
+                        <li class="catalog-item">
+                            <img class="dashboard-icon" src="assets/img/home.png">
+                            <a class="catalog-item-content" runat="server" href="dashboard.aspx" style="color: blue;">Dashboard</a>
+                        </li>
+                        <li class="catalog-item">
+                            <img class="dashboard-icon" src="assets/img/suitcase.png">
+                            <a class="catalog-item-content" href="totalholiday.aspx" style="color: blue;">Total Holidays</a>
+                        </li>
+                        <li class="catalog-item">
+                            <img class="dashboard-icon" src="assets/img/Icon.png">
+                            <a class="catalog-item-content" id="listempl" runat="server" href="listempl.aspx" style="color: blue;">List of employee</a>
+                        </li>
+                        <li class="catalog-item">
+                            <img class="dashboard-icon" src="assets/img/alert.png">
+                            <a class="catalog-item-content" runat="server" href="alert.aspx" style="color: blue;">Alert</a>
+                        </li>
+                        <li class="catalog-item">
+                            <img class="dashboard-icon" src="assets/img/management.png">
+                            <a class="catalog-item-content" href="manager.aspx" style="color: blue;">Manager</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                </div>
+                <div class="body-main">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
             </div>
         </div>
-        <div class="body">
-            <div class="body-catalog">
-                <ul class="catalog-list">
-                    <li class="catalog-item">
-                        <img class="dashboard-icon" src="assets/img/home.png">
-                        <a class="catalog-item-content" runat="server" href="dashboard.aspx" style="color: blue;">Payroll</a>
-                    </li>
-                    <li class="catalog-item">
-                        <img class="dashboard-icon" src="assets/img/suitcase.png">
-                        <a class="catalog-item-content" href="totalholiday.aspx" style="color: blue;">Total Holidays
-                        </a>
-                    </li>
-                    <li class="catalog-item">
-                        <img class="dashboard-icon" src="assets/img/Icon.png">
-                        <a class="catalog-item-content" id="listempl" runat="server" href="listempl.aspx" style="color: blue;">List of employee</a>
-                    </li>
-                    <li class="catalog-item">
-                        <img class="dashboard-icon" src="assets/img/alert.png">
-                        <a class="catalog-item-content" href="Manager.aspx" style="color: blue;">Manager</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-            </div>
-            <div class="body-main">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    <%-- bắt đầu từ class body-main-dashboard--%>
-                </asp:ContentPlaceHolder>
-            </div>
-        </div>
-        </div>
-        
+
     </form>
 </body>
 </html>

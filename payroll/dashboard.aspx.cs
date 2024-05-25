@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
+using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace IntegratedHrPayroll.payroll
 {
@@ -117,15 +119,65 @@ namespace IntegratedHrPayroll.payroll
             }
             GridView2.DataSource = dt3;
             GridView2.DataBind();
-
         }
+        private void loadEarningsByBenefitPlan()
+        {
+            string query = "SELECT BENEFIT_PLANS.PLAN_NAME, SUM(Employee.Pay_Amount * Pay_Rates.Value * (100 - Pay_Rates.Tax_Percentage) / 100) AS Total_Earnings FROM Employee " +
+                            "JOIN Pay_Rates ON Employee.Pay_Rates_idPay_Rates = Pay_Rates.idPay_Rates " +
+                            "JOIN Personal on Employee.Employee_Number = Personal.PERSONAL_ID " +
+                            "JOIN Benefit_Plans ON Personal.BENEFIT_PLAN_ID = Benefit_Plans.Benefit_Plans_ID " +
+                            "GROUP BY Benefit_Plans.Plan_Name";
+
+            DataTable dt = consqlsv.getData(query);
+
+            List<string> planNames = new List<string>();
+            List<double> earnings = new List<double>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                planNames.Add(row["Plan_Name"].ToString());
+                earnings.Add(double.Parse(row["Total_Earnings"].ToString()));
+            }
+
+            Session["planNames"] = JsonConvert.SerializeObject(planNames.ToArray());
+            Session["earnings"] = JsonConvert.SerializeObject(earnings.ToArray());
+        }
+
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
             loaddashboard1();
             //lay du lieu tu bang personal
             loaddashboard2();
+            // code demo truyền data qua bên giao diện
+            // load data nhân viên ra bằng sql
+            loadEarningsByBenefitPlan();
+            DataTable dt3 = consqlsv.getData("SELECT count(*) as total FROM [HRM].[dbo].[PERSONAL]");
+            // get cột ra
+            List<int> arr = new List<int>();
+            foreach (DataRow row in dt3.Rows) {
+                arr.Add(Convert.ToInt32(row["total"]));
+            }
+            // nhớ lúc code ở đây phải chạy lại project
+            arr.Add(20);
+            arr.Add(30);
+            arr.Add(50);
+            arr.Add(10);
+            // bỏ dô session
+            Session["totalEmployee"] = JsonConvert.SerializeObject(arr.ToArray());
+            // qua kia
 
+            // tốt nhất nên xử lý bên ni hết
+            // sau đó tryền Session["data"], Session["options"]
+            string[] labels = { "Nhân Viên", "Cổ Đông"};
+            Session["labels"] = JsonConvert.SerializeObject(labels);
+            int[] data = { 146889934, 114809508};
+            Session["data"] = JsonConvert.SerializeObject(data);
+            // random đại gì đó
+            string[] backgroundColor = { "blue", "orange" };
+            Session["backgroundColor"] = JsonConvert.SerializeObject(backgroundColor);
         }
 
 

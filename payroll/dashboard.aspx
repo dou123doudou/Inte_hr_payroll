@@ -3,6 +3,38 @@
        
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div style="width: 500px; height: 500px;"><canvas id="myChart" ></canvas></div>
+    <script>
+        // lấy data trong session ra
+        var totalEmployee = '<%= Session["totalEmployee"] %>'.split(',');
+
+        var totalEmployee = JSON.parse('<%= Session["totalEmployee"] %>');
+        //console.log(sessionCheck);
+        const labels = JSON.parse('<%= Session["labels"] as string %>');
+        const data = JSON.parse('<%= Session["data"] as string %>');
+        const backgroundColor = JSON.parse('<%= Session["backgroundColor"] as string %>');
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: '',
+                        data,
+                        backgroundColor,
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>>
         <div class="body-main-dashboard">
                         <div class="dashboard-group">
                             <a href="#" class="dashboard-link dashboard-link1 link-active">Earnings Per Employee</a>

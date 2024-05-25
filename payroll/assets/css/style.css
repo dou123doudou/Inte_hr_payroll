@@ -37,7 +37,6 @@
 
 .body-catalog {
     width: 20%;
-    height: 100%;
     background-color: #F5F5F5;
 }
 
@@ -97,7 +96,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 .dashboard-display {
@@ -153,6 +152,8 @@
 .search-input {
     width: 300px;
     height: 30px;
+    border: solid #000;
+    border-width: 1px 1px;
     border-radius: 10px;
 }
 
@@ -167,9 +168,25 @@
     cursor: pointer;
 }
 
+.nav-main {
+    display: flex;
+}
+
+.display-none {
+    display: none;
+}
+
+.data-not-found {
+    display: flex;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
 .reset-btn {
     height: 35px;
-    width: 50px;
+    width: 80px;
     background-color: green;
     color: black;
     border-radius: 10px;
@@ -181,12 +198,12 @@
 .addannouce-btn {
     background-color: #04046b;
     height: 35px;
-    width: 300px;
+    width: 200px;
     color: #FFFFFF;
     font-size: 16px;
     border: 1px solid #DDD9D9;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -290,13 +307,14 @@
 }
 
 body, html {
-    height: 100%;
+    height: 100vh;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: Arial, sans-serif;
 }
+
+/*display: flex;
+justify-content: center;
+align-items: center; */
 
 .login-container {
     width: 300px;

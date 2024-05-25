@@ -31,7 +31,6 @@ namespace IntegratedHrPayroll.payroll
             GridViewRow row = GridView1.Rows[e.RowIndex];
             string[] employeeName = ((TextBox)row.Cells[1].Controls[0]).Text.Split(' '); // full name = first + mid + last
             string firstName = "", middleName = "", lastName = "";
-            // lâu ko code hơi gà
             if (employeeName.Length >= 2) // cái ni đúng với tên 2 chữ luôn
             {
                 firstName = employeeName[0];
@@ -46,12 +45,14 @@ namespace IntegratedHrPayroll.payroll
             }
             string gender = ((TextBox)row.Cells[2].Controls[0]).Text;
             string nation = ((TextBox)row.Cells[3].Controls[0]).Text;
-            string department = ((TextBox)row.Cells[4].Controls[0]).Text;
-            string workingDay = ((TextBox)row.Cells[5].Controls[0]).Text;
-            string maximumOfNumberDayOff = ((TextBox)row.Cells[6].Controls[0]).Text;
+            string[] arr_birthdate = ((TextBox)row.Cells[4].Controls[0]).Text.Split(' ')[0].Split('/');
+            string birthdate = arr_birthdate[2] +"-"+ arr_birthdate[1] +"-"+ arr_birthdate[0];
+            string department = ((TextBox)row.Cells[5].Controls[0]).Text;
+            string workingDay = string.IsNullOrEmpty(((TextBox)row.Cells[6].Controls[0]).Text) ? "0" : ((TextBox)row.Cells[6].Controls[0]).Text;
+            string maximumOfNumberDayOff = string.IsNullOrEmpty(((TextBox)row.Cells[7].Controls[0]).Text) ? "0" : ((TextBox)row.Cells[7].Controls[0]).Text;
 
 
-            string updateSql = "UPDATE PERSONAL SET CURRENT_FIRST_NAME=@firstName,CURRENT_MIDDLE_NAME=@middleName,CURRENT_LAST_NAME=@lastName,CURRENT_GENDER=@gender,CURRENT_COUNTRY=@nation WHERE PERSONAL_ID = @employeeId";
+            string updateSql = "UPDATE PERSONAL SET CURRENT_FIRST_NAME=@firstName,CURRENT_MIDDLE_NAME=@middleName,birth_date = (@birthdate),CURRENT_LAST_NAME=@lastName,CURRENT_GENDER=@gender,CURRENT_COUNTRY=@nation WHERE PERSONAL_ID = @employeeId";
 
             using (SqlConnection conn = new SqlConnection(consqlsv.ConnectionString))
             {
@@ -62,6 +63,7 @@ namespace IntegratedHrPayroll.payroll
                 cmd.Parameters.AddWithValue("@employeeId", employeeId);
                 cmd.Parameters.AddWithValue("@gender", gender);
                 cmd.Parameters.AddWithValue("@nation", nation);
+                cmd.Parameters.AddWithValue("@birthdate", birthdate);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -86,6 +88,7 @@ namespace IntegratedHrPayroll.payroll
                 cmd.Parameters.AddWithValue("@employeeId", employeeId);
                 cmd.Parameters.AddWithValue("@maximumOfNumberDayOff", maximumOfNumberDayOff);
                 cmd.Parameters.AddWithValue("@workingDay", workingDay);
+                cmd.Parameters.AddWithValue("@birthdate", birthdate);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
@@ -150,6 +153,7 @@ namespace IntegratedHrPayroll.payroll
             TB_MiddleName.Text = "";
             TB_Gender.Text = "";
             TB_Nation.Text = "";
+            TB_Birtdate.Text = "";
             TB_Department.Text = "";
             TB_Workingday.Text = "";
             TB_Dayoff.Text = "";
@@ -157,12 +161,14 @@ namespace IntegratedHrPayroll.payroll
 
         protected void HandleResetEmployee(object sender, EventArgs e)
         {
+            TextBox1.Text = "";
             TB_EmployeeID.Text = "";
             TB_FirstName.Text = "";
             TB_LastName.Text = "";
             TB_MiddleName.Text = "";
             TB_Gender.Text = "";
             TB_Nation.Text = "";
+            TB_Birtdate.Text = "";
             TB_Department.Text = "";
             TB_Workingday.Text = "";
             TB_Dayoff.Text = "";
@@ -178,25 +184,27 @@ namespace IntegratedHrPayroll.payroll
             string lastName = TB_LastName.Text;
             string gender = TB_Gender.Text;
             string nation = TB_Nation.Text;
+            string birtdate = TB_Birtdate.Text;
             string department = TB_Department.Text;
             string workingday = TB_Workingday.Text;
             string dayoff = TB_Dayoff.Text;
 
             // viết sql thêm vào db
             int rdId = new Random().Next(0, 1000000);
-            string sql = "INSERT INTO PERSONAL(PERSONAL_ID, CURRENT_FIRST_NAME,CURRENT_MIDDLE_NAME,CURRENT_LAST_NAME,CURRENT_GENDER,CURRENT_COUNTRY )" + " VALUES(@employeeId,@firstName,@middleName,@lastName,@gender,@nation)";
+            string sql = "INSERT INTO PERSONAL(PERSONAL_ID, CURRENT_FIRST_NAME,CURRENT_MIDDLE_NAME,CURRENT_LAST_NAME,CURRENT_GENDER,CURRENT_COUNTRY,BIRTH_DATE )" + " VALUES(@employeeId,@firstName,@middleName,@lastName,@gender,@nation,@birthdate)";
             string sqlj = "INSERT INTO JOB_HISTORY_(DEPARTMENT,JOB_HISTORY_ID)" + " VALUES(@department,@rdId)";
             string sqlewt = "INSERT INTO EMPLOYMENT_WORKING_TIME(NUMBER_DAYS_ACTUAL_OF_WORKING_PER_MONTH,TOTAL_NUMBER_VACATION_WORKING_DAYS_PER_MONTH,EMPLOYMENT_WORKING_TIME_ID )" + " VALUES(@workingday,@dayoff,@rdId)";
 
             using (SqlConnection conn = new SqlConnection(consqlsv.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                cmd.Parameters.AddWithValue("@employeeId", rdId);
                 cmd.Parameters.AddWithValue("@firstName", firstName);
                 cmd.Parameters.AddWithValue("@middleName", middleName);
                 cmd.Parameters.AddWithValue("@lastName", lastName);
                 cmd.Parameters.AddWithValue("@gender", gender);
                 cmd.Parameters.AddWithValue("@nation", nation);
+                cmd.Parameters.AddWithValue("@birthdate", birtdate);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -225,6 +233,7 @@ namespace IntegratedHrPayroll.payroll
             TB_MiddleName.Text = "";
             TB_Gender.Text = "";
             TB_Nation.Text = "";
+            TB_Birtdate.Text = "";
             TB_Department.Text = "";
             TB_Workingday.Text = "";
             TB_Dayoff.Text = "";
@@ -235,12 +244,12 @@ namespace IntegratedHrPayroll.payroll
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            TB_EmployeeID.Attributes.Add("placeholder", "Enter ID");
             TB_FirstName.Attributes.Add("placeholder", "Enter F Name");
             TB_MiddleName.Attributes.Add("placeholder", "Enter M Name");
             TB_LastName.Attributes.Add("placeholder", "Enter L Name");
             TB_Gender.Attributes.Add("placeholder", "Enter Gender");
             TB_Nation.Attributes.Add("placeholder", "Enter Nation");
+            TB_Birtdate.Attributes.Add("placeholder", "Enter Birtdate");
             TB_Department.Attributes.Add("placeholder", "Enter Department");
             TB_Workingday.Attributes.Add("placeholder", "Enter Working day");
             TB_Dayoff.Attributes.Add("placeholder", "Enter Day off");
@@ -255,7 +264,7 @@ namespace IntegratedHrPayroll.payroll
             try
             {
                 string sql = @"SELECT p.PERSONAL_ID ,p.CURRENT_FIRST_NAME + ' ' + p.CURRENT_MIDDLE_NAME + ' ' + p.CURRENT_LAST_NAME AS EmployeeName, 
-                                      p.CURRENT_GENDER as Gender, p.CURRENT_COUNTRY as Nation, j.DEPARTMENT, 
+                                      p.CURRENT_GENDER as Gender, p.CURRENT_COUNTRY as Nation,p.BIRTH_DATE as Birtdate, j.DEPARTMENT, 
                                       ewt.NUMBER_DAYS_ACTUAL_OF_WORKING_PER_MONTH as Workingday, 
                                       ewt.TOTAL_NUMBER_VACATION_WORKING_DAYS_PER_MONTH as MaximumofNumberdayoff 
                                FROM PERSONAL p 
@@ -265,6 +274,7 @@ namespace IntegratedHrPayroll.payroll
                                        MAX(p.CURRENT_FIRST_NAME + ' ' + p.CURRENT_MIDDLE_NAME + ' ' + p.CURRENT_LAST_NAME) AS EmployeeName,
                                        MAX(p.CURRENT_GENDER) as Gender,
                                        MAX(p.CURRENT_COUNTRY) as Nation,
+                                       CAST(MAX(p.BIRTH_DATE) AS DATE) as Birthdate,
                                        MAX(j.DEPARTMENT) as Department,
                                        SUM(ewt.NUMBER_DAYS_ACTUAL_OF_WORKING_PER_MONTH) as Workingday,
                                        MAX(ewt.TOTAL_NUMBER_VACATION_WORKING_DAYS_PER_MONTH) as MaximumofNumberdayoff
@@ -279,8 +289,29 @@ namespace IntegratedHrPayroll.payroll
                 sql1 = sql1 + " GROUP BY p.PERSONAL_ID";
 
                 DataTable dt = consqlsv.getData(sql1);
+                foreach (DataRow row in dt.Rows)
+                {
+                    DateTime birthDate = (DateTime)row["Birthdate"];
+                    string formattedBirthDate = birthDate.ToString("yyyy-MM-dd");
+                    row.BeginEdit();
+                    row["Birthdate"] = formattedBirthDate;
+                    row.EndEdit();
+                }
                 GridView1.DataSource = dt;
+
                 GridView1.DataBind();
+                if (dt.Rows.Count == 0)
+                {
+                    Label1.Visible = true;
+                    GridView1.Visible = false;
+                    GridView1.CssClass = "display-none";
+                }
+                else
+                {
+                    GridView1.Visible = true;
+                    Label1.Visible = false;
+                    GridView1.CssClass = "";
+                }
             }
             catch (Exception ex)
             {

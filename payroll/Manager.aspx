@@ -23,6 +23,7 @@
                         <asp:TextBox ID="TB_LastName" runat="server"></asp:TextBox>
                         <asp:TextBox ID="TB_Gender" runat="server"></asp:TextBox>
                         <asp:TextBox ID="TB_Nation" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="TB_Birtdate" runat="server"></asp:TextBox>
                         <asp:TextBox ID="TB_Department" runat="server"></asp:TextBox>
                         <asp:TextBox ID="TB_Workingday" runat="server"></asp:TextBox>
                         <asp:TextBox ID="TB_Dayoff" runat="server"></asp:TextBox>
@@ -49,15 +50,15 @@
                             <asp:BoundField ItemStyle-CssClass="table-shareholders-colum" HeaderText="Employee Full Name" DataField="EmployeeName" />
                             <asp:BoundField ItemStyle-CssClass="table-shareholders-colum" HeaderText="Gender" DataField="Gender" />
                             <asp:BoundField ItemStyle-CssClass="table-shareholders-colum" HeaderText="Nation" DataField="Nation" />
+                            <asp:BoundField ItemStyle-CssClass="table-shareholders-colum" HeaderText="Birthdate" DataField="Birthdate" />
                             <asp:BoundField ItemStyle-CssClass="table-shareholders-colum" HeaderText="Department" DataField="Department" />
                             <asp:BoundField ItemStyle-CssClass="table-shareholders-colum" HeaderText="Working day" DataField="Workingday" />
                             <asp:BoundField ItemStyle-CssClass="table-shareholders-colum" HeaderText="Maximum of Number day off" DataField="MaximumofNumberdayoff" />
-
                             <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" CancelText="Hủy" DeleteText="Xóa" EditText="Sửa" UpdateText="Cập nhật" />
                         </Columns>
                     </asp:GridView>
 
-
+                    <asp:Label ID="Label1" runat="server" Text="Data is empty" Visible="false" CssClass="data-not-found"></asp:Label>
                 </table>
             </div>
         </asp:Panel>
